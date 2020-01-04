@@ -6,6 +6,7 @@
     "serve": "cd resources/frontend && yarn run serve",
     "build": "cd resources/frontend && yarn run build",
     "lint": "cd resources/frontend && yarn run lint",
-    "test": "cd resources/frontend && yarn run test:unit"
+    "test": "cd resources/frontend && yarn run test:unit",
+    "install": "cd resources/frontend && yarn add"
   }
 }
