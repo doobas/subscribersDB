@@ -4,7 +4,10 @@
 
 <script>
   export default {
-    name: "SubscriberList"
+    name: "SubscriberList",
+    created: () => {
+
+    }
   }
 </script>
 

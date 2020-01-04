@@ -1,15 +1,19 @@
 <template>
   <div id="app">
-
+    <NavBar />
+    <div class="container">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
+import NavBar from './components/NavBar'
 
 export default {
   name: 'app',
   components: {
-
+    NavBar
   }
 }
 </script>
@@ -21,6 +25,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  background-color: #eee;
+  min-height: 100vh;
 }
+  .container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+  }
 </style>

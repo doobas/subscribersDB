@@ -3,6 +3,7 @@ import FieldList from './components/FieldList'
 
 
 export default [
-  { path: '/', component: SubscriberList },
+  { path: '/', redirect: '/subscribers' },
+  { path: '/subscribers', component: SubscriberList },
   { path: '/fields', component: FieldList },
 ]
