@@ -15,3 +15,5 @@ use Illuminate\Http\Request;
 
 Route::resource('/fields', 'FieldController')->except(['create','edit']);
 Route::resource('/subscribers', 'SubscriberController')->except(['create','edit']);
+
+Route::get('/fields-types', 'FieldTypeController@index');

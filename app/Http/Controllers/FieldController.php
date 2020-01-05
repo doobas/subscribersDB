@@ -46,7 +46,9 @@ class FieldController extends Controller
      */
     public function update(FieldRequest $request, Field $field)
     {
-        $field->update($request->all());
+        $field->update([
+            Field::A_TITLE => $request->get(Field::A_TITLE)
+        ]);
 
         return FieldResource::make($field);
     }

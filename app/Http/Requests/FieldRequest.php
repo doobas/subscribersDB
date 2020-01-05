@@ -29,7 +29,7 @@ class FieldRequest extends FormRequest
                 'required'
             ],
             Field::A_TYPE => [
-                'required',
+                'nullable',
                 Rule::in(Field::TYPES)
             ]
         ];

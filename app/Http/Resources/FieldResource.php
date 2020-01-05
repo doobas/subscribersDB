@@ -10,7 +10,7 @@ class FieldResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
     public function toArray($request)
@@ -22,6 +22,10 @@ class FieldResource extends JsonResource
             Field::PIVOT_VALUE => $this->whenPivotLoaded('field_subscriber', function () {
                 return $this->pivot->{Field::PIVOT_VALUE};
             }),
+            Field::CREATED_AT => $this->when(
+                !optional($this->pivot)->{Field::PIVOT_VALUE},
+                $this->{Field::CREATED_AT}->format('Y-m-d H:i:s')
+            ),
             Field::REL_SUBSCRIBERS => SubscriberResource::collection($this->whenLoaded(Field::REL_SUBSCRIBERS))
         ];
     }

@@ -41,11 +41,11 @@ class SubscriberRequest extends FormRequest
                 'nullable',
                 'array'
             ],
-            Subscriber::REL_FIELDS.'.*.'.Field::A_TITLE => [
+            Subscriber::REL_FIELDS . '.*.' . Field::A_TITLE => [
                 'required',
-                'exists:'.Field::TABLE.','.Field::A_TITLE
+                'exists:' . Field::TABLE . ',' . Field::A_TITLE
             ],
-            Subscriber::REL_FIELDS.'.*.'.Field::PIVOT_VALUE => [
+            Subscriber::REL_FIELDS . '.*.' . Field::PIVOT_VALUE => [
                 'nullable',
                 new FieldValue($this->validationData())
             ],
@@ -64,8 +64,8 @@ class SubscriberRequest extends FormRequest
     public function attributes()
     {
         return [
-            Subscriber::REL_FIELDS.'.*.'.Field::A_TITLE => Field::A_TITLE,
-            Subscriber::REL_FIELDS.'.*.'.Field::PIVOT_VALUE => Field::PIVOT_VALUE,
+            Subscriber::REL_FIELDS . '.*.' . Field::A_TITLE => Field::A_TITLE,
+            Subscriber::REL_FIELDS . '.*.' . Field::PIVOT_VALUE => Field::PIVOT_VALUE,
         ];
     }
 }

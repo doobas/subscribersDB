@@ -4,15 +4,14 @@ import VueRouter from 'vue-router'
 import Vuex from 'vuex'
 import routes from './routes';
 import Vuikit from 'vuikit'
-import VuikitIcons from '@vuikit/icons'
 import '@vuikit/theme'
+import store from './store'
 
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(Vuikit)
-Vue.use(VuikitIcons)
 
 const router = new VueRouter({
   mode: 'history',
@@ -21,5 +20,6 @@ const router = new VueRouter({
 
 new Vue({
   render: h => h(App),
-  router
+  router,
+  store
 }).$mount('#app')
