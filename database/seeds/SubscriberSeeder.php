@@ -13,6 +13,9 @@ class SubscriberSeeder extends Seeder
     {
         factory(\App\Subscriber::class, 100)->create()->each(function(\App\Subscriber $subscriber) {
             $faker = Faker\Factory::create();
+
+            $subscriber->setAttribute(\App\Subscriber::A_STATE, $faker->randomElement(\App\Subscriber::STATES))->save();
+
             $fields = \App\Field::inRandomOrder()->take(random_int(0,10))->get();
             foreach ($fields as $field) {
                 switch ($field->{\App\Field::A_TYPE}) {

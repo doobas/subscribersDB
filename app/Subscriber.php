@@ -19,8 +19,7 @@ class Subscriber extends Model
 
     protected $fillable = [
         self::A_NAME,
-        self::A_EMAIL,
-        self::A_STATE,
+        self::A_EMAIL
     ];
 
     const REL_FIELDS = 'fields';
