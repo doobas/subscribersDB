@@ -1,10 +1,14 @@
 import subscribersApi from '../../api/subscribers'
+import fieldsApi from "../../api/fields";
+import normalizer from "../../normalizer";
 
 const state = {
   loading: false,
   page: 1,
   subscribers: [],
   meta: [],
+  subscriber: {},
+  formErrors: []
 }
 
 // getters
@@ -20,6 +24,16 @@ const actions = {
     commit('setLoading', false)
   },
 
+  async fetchSubscriberData({commit, dispatch}, subscriberId) {
+    commit('setLoading', true)
+    await dispatch('fields/fetchData', {}, { root: true });
+    if (subscriberId) {
+      const subscribers = await subscribersApi.show(subscriberId);
+      commit('setSubscriber', subscribers.data)
+    }
+    commit('setLoading', false)
+  },
+
   async destroy({commit, dispatch, state}, subscriberId) {
     if (!confirm('Are you sure ?')) {
       return;
@@ -28,6 +42,26 @@ const actions = {
     await subscribersApi.destroy(subscriberId)
     await dispatch('fetchData')
     commit('setLoading', false)
+  },
+
+  async create({commit, state}, field_values) {
+    commit('setFormErrors', {})
+    const response = await subscribersApi.create(normalizer.subscriber(state.subscriber, field_values))
+    if (response.errors) {
+      commit('setFormErrors', response.errors)
+      return false
+    }
+    return true;
+  },
+
+  async update({state, commit}, field_values) {
+    commit('setFormErrors', {})
+    const response = await subscribersApi.update(state.subscriber.id, normalizer.subscriber(state.subscriber, field_values))
+    if (response.errors) {
+      commit('setFormErrors', response.errors)
+      return false
+    }
+    return true;
   }
 }
 
@@ -41,12 +75,20 @@ const mutations = {
     state.subscribers = subscribers
   },
 
+  setSubscriber(state, subscriber) {
+    state.subscriber = subscriber
+  },
+
   setMeta(state, meta) {
     state.meta = meta
   },
 
   setPage(state, page) {
     state.page = page
+  },
+
+  setFormErrors(state, formErrors) {
+    state.formErrors = formErrors
   }
 }
 

@@ -33,10 +33,6 @@ class SubscriberRequest extends FormRequest
                 'email',
                 Rule::unique(Subscriber::TABLE)->ignore($this->getSubscriberId())
             ],
-            Subscriber::A_STATE => [
-                'nullable',
-                Rule::in(Subscriber::STATES)
-            ],
             Subscriber::REL_FIELDS => [
                 'nullable',
                 'array'

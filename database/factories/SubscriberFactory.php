@@ -9,6 +9,5 @@ $factory->define(Subscriber::class, function (Faker $faker) {
     return [
         Subscriber::A_NAME => $faker->name,
         Subscriber::A_EMAIL => $faker->safeEmail,
-        Subscriber::A_STATE => $faker->randomElement(Subscriber::STATES),
     ];
 });

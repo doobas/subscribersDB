@@ -72,7 +72,8 @@
         'destroy',
       ]),
       ...mapMutations('subscribers', [
-        'setPage'
+        'setPage',
+        'setSubscribers'
       ])
     },
     computed: {
@@ -91,6 +92,9 @@
         }
       }
     },
+    destroyed() {
+      this.setSubscribers({})
+    }
   }
 </script>
 
