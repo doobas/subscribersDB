@@ -22,7 +22,7 @@
                 <tbody>
                 <tr v-for="subscriber in subscribers" :key="subscriber.id">
                     <td>{{ subscriber.id }}</td>
-                    <td>{{ subscriber.name }}</td>
+                    <td><a @click.prevent="showSubscriber(subscriber)">{{ subscriber.name }}</a></td>
                     <td>{{ subscriber.email }}</td>
                     <td>{{ subscriber.state }}</td>
                     <td>{{ subscriber.created_at }}</td>
@@ -43,21 +43,30 @@
             </vk-pagination>
         </div>
 
+        <vk-modal :show.sync="showSubscriberModal" :subscriber="selectedSubscriber">
+            <SubscriberModal :subscriber="selectedSubscriber" />
+        </vk-modal>
 
     </div>
 </template>
 
 <script>
   import {mapState, mapActions, mapMutations} from 'vuex'
-  import {Pagination} from 'vuikit/lib/pagination'
   import {IconFileEdit, IconTrash} from '@vuikit/icons'
+  import SubscriberModal from './partials/SubscriberModal'
 
   export default {
     name: "SubscriberList",
     components: {
-      VkPagination: Pagination,
       VkIconsFileEdit: IconFileEdit,
       VkIconsTrash: IconTrash,
+      SubscriberModal
+    },
+    data() {
+      return {
+        showSubscriberModal: false,
+        selectedSubscriber: null,
+      }
     },
     created() {
       this.fetchData()
@@ -74,7 +83,11 @@
       ...mapMutations('subscribers', [
         'setPage',
         'setSubscribers'
-      ])
+      ]),
+      showSubscriber(subscriber) {
+        this.selectedSubscriber = subscriber
+        this.showSubscriberModal = true
+      }
     },
     computed: {
       ...mapState('subscribers', [
