@@ -14,7 +14,7 @@ class FieldController extends Controller
      */
     public function index()
     {
-        $fields = Field::query()->paginate();
+        $fields = Field::all();
 
         return FieldResource::collection($fields);
     }

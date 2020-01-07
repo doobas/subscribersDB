@@ -24,14 +24,15 @@ class FieldRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            Field::A_TITLE => [
-                'required'
-            ],
-            Field::A_TYPE => [
-                'nullable',
+        $rules[Field::A_TITLE] = ['required'];
+
+        if ($this->method() === 'POST') {
+            $rules[Field::A_TYPE] = [
+                'required',
                 Rule::in(Field::TYPES)
-            ]
-        ];
+            ];
+        }
+
+        return $rules;
     }
 }
