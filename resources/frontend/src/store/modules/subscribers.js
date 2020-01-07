@@ -1,5 +1,4 @@
 import subscribersApi from '../../api/subscribers'
-import fieldsApi from "../../api/fields";
 import normalizer from "../../normalizer";
 
 const state = {
@@ -34,7 +33,7 @@ const actions = {
     commit('setLoading', false)
   },
 
-  async destroy({commit, dispatch, state}, subscriberId) {
+  async destroy({commit, dispatch}, subscriberId) {
     if (!confirm('Are you sure ?')) {
       return;
     }

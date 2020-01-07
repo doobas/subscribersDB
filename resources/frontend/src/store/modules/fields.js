@@ -33,7 +33,7 @@ const actions = {
     commit('setLoading', false)
   },
 
-  async destroy({commit, dispatch, state}, fieldId) {
+  async destroy({commit, dispatch}, fieldId) {
     if (!confirm('Are you sure ?')) {
       return;
     }
