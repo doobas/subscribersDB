@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="subscriber">
         <vk-modal-title>{{ subscriber.name }}</vk-modal-title>
 
         <div class="uk-grid uk-child-width-1-2@m uk-grid">
