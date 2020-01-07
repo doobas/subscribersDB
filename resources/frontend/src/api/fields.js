@@ -10,7 +10,6 @@ export default {
   },
 
   create(formData) {
-    console.log('formData', formData);
     return fetch(`/api/fields`, {
       method: 'POST',
       body: JSON.stringify(formData),
