@@ -31,7 +31,7 @@
                                 :name="`field_values.${field.title}`"
                                 v-model="field_values[field.title]"
                                 type="text"
-                                :class="{'uk-form-danger':formErrors.email}"
+                                :class="{'uk-form-danger':formErrors[`fields.${field.title}.value`]}"
                         />
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                                 :name="`field_values.${field.title}`"
                                 v-model="field_values[field.title]"
                                 type="number"
-                                :class="{'uk-form-danger':formErrors.email}"
+                                :class="{'uk-form-danger':formErrors[`fields.${field.title}.value`]}"
                         />
                     </div>
                 </div>
@@ -54,8 +54,7 @@
                                 type="checkbox"
                                 :name="`field_values.${field.title}`"
                                 v-model="field_values[field.title]"
-                                :class="{'uk-form-danger':formErrors.email}"
-                        > {{ field.title }}
+                        > <span :class="{'uk-text-danger':formErrors[`fields.${field.title}.value`]}">{{ field.title }}</span>
                     </label>
                 </div>
                 <div v-else-if="field.type === 'date'">
@@ -66,7 +65,7 @@
                                 :name="`field_values.${field.title}`"
                                 v-model="field_values[field.title]"
                                 type="tel"
-                                :class="{'uk-form-danger':formErrors.email}"
+                                :class="{'uk-form-danger':formErrors[`fields.${field.title}.value`]}"
                                 placeholder="yyyy-mm-dd"
                                 v-mask="'####-##-##'"
                         />

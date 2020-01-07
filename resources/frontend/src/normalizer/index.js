@@ -7,12 +7,12 @@ export default {
   },
 
   subscriber(data, field_values) {
-    let fields = [];
+    let fields = {};
     Object.keys(field_values).forEach(function (title) {
-      fields.push({
+      fields[title] = {
         title: title,
         value: field_values[title],
-      })
+      }
     });
     return {
       name: data.name,
